@@ -35,7 +35,7 @@ def validate_file_infection(file):
             logger.error('Scanner file size limit exceeded: %s', result['stream'])
         elif result['stream'][0] == 'FOUND':
             logger.warning('ClamAV Scan result was %s', result['stream'])
-            raise ValidationError(_(f'File is infected with malware {result['stream'][0]}'), code='infected')
+            raise ValidationError(_(f'File is infected with malware {result["stream"][0]}'), code='infected')
 
     # Return file pointer to beginning of the file again
     file.seek(0)
