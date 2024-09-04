@@ -31,7 +31,8 @@ def validate_file_infection(file):
         return
 
     if result and result['stream'][0] == 'FOUND':
-        raise ValidationError(_('File is infected with malware'), code='infected')
+        logger.warning('ClamAV Scan result was %s', result['stream'])
+        raise ValidationError(_(f'File is infected with malware {result['stream'][0]}'), code='infected')
 
     # Return file pointer to beginning of the file again
     file.seek(0)
