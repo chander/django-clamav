@@ -21,6 +21,8 @@ def validate_file_infection(file):
 
     scanner = get_scanner()
     try:
+        # result['stream'] is going to be a two-tuple that contains the word FOUND for a scan error,
+        # And then the text for the second part.
         result = scanner.instream(file)
     except IOError:
         # Ping the server if it fails than the server is down
@@ -31,11 +33,11 @@ def validate_file_infection(file):
         return
 
     if result:
-        if 'Heuristics.Limits.Exceeded.MaxFileSize' in result['stream'][0]:
+        if 'Heuristics.Limits.Exceeded.MaxFileSize' in result['stream'][1]:
             logger.error('Scanner file size limit exceeded: %s', result['stream'])
         elif result['stream'][0] == 'FOUND':
             logger.warning('ClamAV Scan result was %s', result['stream'])
-            raise ValidationError(_(f'File is infected with malware {result["stream"][0]}'), code='infected')
+            raise ValidationError(_(f'File is infected with malware {result["stream"][1]}'), code='infected')
 
     # Return file pointer to beginning of the file again
     file.seek(0)
