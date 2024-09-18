@@ -33,7 +33,7 @@ def validate_file_infection(file):
         return
 
     if result:
-        if 'Heuristics.Limits.Exceeded.MaxFileSize' in result['stream'][1]:
+        if result['stream'][1] and 'Heuristics.Limits.Exceeded.MaxFileSize' in result['stream'][1]:
             logger.error('Scanner file size limit exceeded: %s', result['stream'])
         elif result['stream'][0] == 'FOUND':
             logger.warning('ClamAV Scan result was %s', result['stream'])
