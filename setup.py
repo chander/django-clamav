@@ -9,7 +9,6 @@ setup(
     version='0.4.0',
     keywords="python, django, clamav, antivirus, scanner, virus, libclamav, clamd",
     description="django-clamav is a django integration with Clamd (Clamav daemon).",
-    long_description=readme,
     url="https://github.com/QueraTeam/django-clamav",
     package_dir={'': 'src'},
     packages=find_packages('src', exclude="tests"),
