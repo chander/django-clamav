@@ -1,10 +1,10 @@
 import logging
-
+import os
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 from django_clamav import get_scanner
-from .conf import CLAMAV_ENABLED
+from .conf import CLAMAV_ENABLED, CLAMAV_MAX_FILE_SIZE
 
 
 logger = logging.getLogger(__name__)
@@ -17,7 +17,14 @@ def validate_file_infection(file):
         return
 
     # Ensure file pointer is at beginning of the file
+    file.seek(0, os.SEEK_END)
+    file_size = file.tell()
     file.seek(0)
+    if file_size > CLAMAV_MAX_FILE_SIZE:
+        logger.warning('ClamAV Scan bypassed (file size of %s exceeded '
+                       'max scan size of %s)', file_size, CLAMAV_MAX_FILE_SIZE)
+        return
+
 
     scanner = get_scanner()
     try:

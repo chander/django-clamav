@@ -26,3 +26,6 @@ CLAMAV_TCP_ADDR = getattr(_settings, 'CLAMAV_TCP_ADDR', '127.0.0.1')
 
 # Enable clamd scanner. By default True. Set to False only for development.
 CLAMAV_ENABLED = getattr(_settings, 'CLAMAV_ENABLED', True)
+
+# Maximum file size to scan
+CLAMAV_MAX_FILE_SIZE = getattr(_settings, 'CLAMAV_MAX_FILE_SIZE', 2147483648)

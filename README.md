@@ -52,6 +52,7 @@ You can still configure how to connect to Clamd. Default values are:
     CLAMAV_USE_TCP = False
     CLAMAV_TCP_PORT = 3310
     CLAMAV_TCP_ADDR = '127.0.0.1'
+    CLAMAV_MAX_FILE_SIZE = 2147483648 # 2GB (Maximum size file to be scanned)
 
 Note: When you are running on Fedora or CentOS and :code:`clamav-scanner`
 package is installed then default value for :code:`CLAMAV_UNIX_SOCKET` is:

@@ -1,0 +1,23 @@
+[project]
+name = "django-clamav"
+version = "0.4.1"
+authors = [
+  { name="Venelin Stoykov", email="vkstoykov@gmail.com" },
+  { name="Ewald Moitzi", email="ewald.moitzi@gmail.com" },
+  { name="Mohammad Javad Naderi", email="mjnaderi@gmail.com" },
+  { name="Chander Ganesan", email="chander@gridgeo.com" },
+]
+description = "A django component that provides a validator which integrates with ClamD for Antivirus scanning"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = {file = "LICENSE"}
+dependencies = [
+  "django>5.0"
+]
+[project.urls]
+Homepage = "https://github.com/chander/django-clamav"
+Issues = "https://github.com/chander/django-clamav/issues"
